@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Korttrækker TEST</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Korttrækker TEST</h1>
+      <button id="btnPlayers" class="ghost">Spil</button>
+    </header>
+
+    <section class="card">
+      <div id="cardText" class="cardText">Tilføj spillere og træk et kort.</div>
+    </section>
+
+    <section class="controls">
+        <button id="btnDraw" class="primary primaryBig">Træk kort</button>
+    </section>
+
+    <section id="playersPanel" class="panel hidden" aria-hidden="true">
+      <div class="panelInner">
+        <div class="panelHeader">
+          <h2>Spillere</h2>
+          <button id="btnClosePlayers" class="ghost">Luk</button>
+        </div>
+
+        <div class="addRow">
+          <input id="playerInput" type="text" placeholder="Indtast navn…" autocomplete="off">
+          <button id="btnAddPlayer" class="secondary">Tilføj</button>
+        </div>
+
+        <ul id="playersList" class="playersList"></ul>
+
+        <div class="gameActions">
+            <button id="btnShuffle" class="danger">Bland kort (restart)</button>
+        </div>
+
+        <p class="hint">
+          Tip: Kort kan bruge {{A}}, {{B}}, {{C}}. Appen vælger altid unikke navne i samme kort.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Offline • Deck-mode • Unikke navne pr kort
+    </footer> 
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+body { margin: 0; background: #0b0b0f; color: #f2f2f7; }
+.app { max-width: 520px; margin: 0 auto; padding: 16px; min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+h1 { margin: 0; font-size: 22px; letter-spacing: .2px; }
+
+.card { background: #15151e; border: 1px solid #242434; border-radius: 18px; padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.cardText { font-size: 20px; line-height: 1.25; white-space: pre-wrap; }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+button { border: 0; border-radius: 14px; padding: 12px 14px; font-size: 16px; cursor: pointer; }
+.primary { background: #f2f2f7; color: #0b0b0f; font-weight: 700; }
+.secondary { background: #2a2a3d; color: #f2f2f7; }
+.ghost { background: transparent; color: #f2f2f7; border: 1px solid #2a2a3d; }
+
+.footer { opacity: .7; font-size: 12px; margin-top: auto; padding-bottom: 6px; }
+
+.panel { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: flex; align-items: flex-end; justify-content: center; padding: 12px; }
+.panelInner { width: 100%; max-width: 520px; background: #15151e; border: 1px solid #242434; border-radius: 18px; padding: 14px; box-sizing: border-box; }
+.panelHeader { display: flex; justify-content: space-between; align-items: center; }
+.addRow { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 10px; }
+input { border-radius: 12px; border: 1px solid #2a2a3d; background: #0f0f16; color: #f2f2f7; padding: 12px; font-size: 16px; outline: none; }
+.playersList { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
+.playerRow { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px; border: 1px solid #2a2a3d; border-radius: 14px; background: #0f0f16; }
+.playerName { font-size: 16px; }
+.playerRow button { padding: 8px 10px; border-radius: 12px; }
+.hint { margin: 12px 0 0; opacity: .75; font-size: 12px; }
+.hidden { display: none; }
+
+
+/* Card-området får en stabil højde og kan scrolle, så knapperne ikke hopper */
+.card {
+  flex: 1;
+  display: flex;
+  min-height: 220px;
+}
+
+.cardText {
+  flex: 1;
+  overflow: auto;
+}
+
+/* Kun én stor knap, centreret */
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.primaryBig {
+  width: 100%;
+  max-width: 520px;
+  padding: 18px 18px;
+  font-size: 22px;
+  border-radius: 18px;
+}
+
+/* “Bland kort” gemt i panelet og gjort mere “bevidst” at trykke */
+.gameActions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.danger {
+  background: #3a1f2a;
+  color: #f2f2f7;
+  border: 1px solid #5a2a3a;
+  width: 100%;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 16px;
+}

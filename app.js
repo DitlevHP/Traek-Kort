@@ -80,6 +80,7 @@ function addPlayerFromInput() {
   playerInput.value = "";
   renderPlayers();
   saveState();
+  playerInput.focus();
 }
 
 function removePlayer(idx) {

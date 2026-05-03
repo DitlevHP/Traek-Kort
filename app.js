@@ -18,6 +18,7 @@ let cards = [];
 let state = loadState();
 
 registerServiceWorker();
+setupIphoneViewportLock();
 
 // Load cards and init
 (async function init() {
@@ -48,6 +49,7 @@ btnDraw.addEventListener("click", () => {
 btnShuffle.addEventListener("click", () => {
   reshuffleDeck(true);
   elCardText.textContent = "Bunken er blandet. Træk et kort!";
+  closePlayers();
 });
 
 btnPlayers.addEventListener("click", openPlayers);
@@ -61,7 +63,6 @@ playerInput.addEventListener("keydown", (e) => {
 function openPlayers() {
   playersPanel.classList.remove("hidden");
   playersPanel.setAttribute("aria-hidden", "false");
-  playerInput.focus();
 }
 function closePlayers() {
   playersPanel.classList.add("hidden");
@@ -197,6 +198,44 @@ function loadState() {
 
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function setupIphoneViewportLock() {
+  let lastTouchY = 0;
+  const scrollableSelector = ".cardText, .panelInner";
+
+  document.addEventListener("touchstart", (event) => {
+    if (event.touches.length === 1) {
+      lastTouchY = event.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchmove", (event) => {
+    if (event.touches.length !== 1) {
+      event.preventDefault();
+      return;
+    }
+
+    const target = event.target instanceof Element
+      ? event.target.closest(scrollableSelector)
+      : null;
+
+    if (!target || target.scrollHeight <= target.clientHeight) {
+      event.preventDefault();
+      return;
+    }
+
+    const currentTouchY = event.touches[0].clientY;
+    const deltaY = currentTouchY - lastTouchY;
+    const atTop = target.scrollTop <= 0;
+    const atBottom = Math.ceil(target.scrollTop + target.clientHeight) >= target.scrollHeight;
+
+    if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) {
+      event.preventDefault();
+    }
+
+    lastTouchY = currentTouchY;
+  }, { passive: false });
 }
 
 function registerServiceWorker() {
